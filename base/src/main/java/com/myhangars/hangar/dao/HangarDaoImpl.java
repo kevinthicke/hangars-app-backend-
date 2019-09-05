@@ -26,6 +26,13 @@ public class HangarDaoImpl implements HangarDao {
         return this.hangarRepository.findByNameWithTrueState("%" + name + "%");
     }
 
+    /*
+    @Override
+    public Optional<Hangar> findExactlyByName(String name) {
+        return this.hangarRepository.findExactlyByNameWithTrueState(name);
+    }
+    */
+
     @Override
     public Optional<Hangar> findById(long id) {
         return this.hangarRepository.findByIdWithTrueState(id);

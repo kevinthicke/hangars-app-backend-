@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class Products_HangarDaoImpl implements Products_HangarDao {
@@ -22,6 +23,11 @@ public class Products_HangarDaoImpl implements Products_HangarDao {
     }
 
     @Override
+    public Optional<Products_Hangar> findProducts_Hangar(long hangarId, long productId) {
+        return this.products_hangarRepository.findByHangar_IdAndProduct_Id(hangarId, productId);
+    }
+
+    @Override
     public List<Products_Hangar> findListProducts_HangarByProductId(long id) {
         return this.products_hangarRepository
                 .findByProduct_Id(id);
@@ -31,5 +37,15 @@ public class Products_HangarDaoImpl implements Products_HangarDao {
     public Products_Hangar includeProductInHangar(Products_Hangar products_hangar) {
         return this.products_hangarRepository
                 .save(products_hangar);
+    }
+
+    @Override
+    public Optional<Products_Hangar> findByHangarIdAndProductId(long hangarId, long productId) {
+        return this.products_hangarRepository.findByHangar_IdAndProduct_Id(hangarId, productId);
+    }
+
+    @Override
+    public Products_Hangar save(Products_Hangar products_hangar) {
+        return this.products_hangarRepository.save(products_hangar);
     }
 }

@@ -10,6 +10,7 @@ import java.util.Optional;
 public interface HangarDao {
     public Page< Hangar > findAll(Pageable pageable);
     public List<Hangar> findByName(String name);
+    //public Optional<Hangar> findExactlyByName(String name);
     public Optional<Hangar> findById(long id);
     public Hangar save(Hangar hangar);
     public Hangar update(Hangar hangar);

@@ -11,6 +11,7 @@ public interface HangarService {
     public List<String> getAllNames();
     public Hangar getById(long id);
     public List<Hangar> getByName(String name);
+    //public Hangar getExactlyByName(String name);
     public Hangar getFirstByName(String name);
     public Hangar insert(Hangar hangar);
     public Hangar update(long id, Hangar hangar);

@@ -17,7 +17,7 @@ public class Products_Hangar implements Serializable {
     private long product_id;
 
     @Column(name = "quantity")
-    private int quantity = 0;
+    private int quantity = 1;
 
     public long getHangar_id() {
         return hangar_id;

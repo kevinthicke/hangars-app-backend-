@@ -7,8 +7,7 @@
         <module>base</module>
 		<module>principal</module>
 		<module>masterData</module>
-        <module>login</module>
-        <module>security</module>
+        <module>commerce</module>
     </modules>
     <parent>
 		<groupId>org.springframework.boot</groupId>
@@ -27,6 +26,12 @@
 			<groupId>com.myhangars</groupId>
 			<artifactId>base</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.8</version>
 		</dependency>
 		<!--
 		<dependency>

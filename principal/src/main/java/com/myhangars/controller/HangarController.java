@@ -1,5 +1,6 @@
 package com.myhangars.controller;
 
+import com.myhangars.exception.ArgumentException;
 import com.myhangars.hangar.builder.HangarBuilder;
 import com.myhangars.hangar.builder.HangarDtoBuilder;
 import com.myhangars.hangar.dto.HangarDto;
@@ -96,6 +97,21 @@ public class HangarController {
                 HttpStatus.OK
         );
     }
+
+    /*
+    @GetMapping(value = "/hangars/exactly", params = { "name "})
+    public ResponseEntity<HangarDto> loadHangarExactlyByName(@RequestParam("name") String name) {
+        if (name.isEmpty())
+            throw new ArgumentException.BodyCannotBeNull();
+
+        HangarDto hangarDto = new HangarDtoBuilder(this.hangarService.getExactlyByName(name)).getHangarDto();
+
+        return new ResponseEntity<HangarDto>(
+                hangarDto,
+                HttpStatus.OK
+        );
+    }
+    */
 
     @PostMapping(value = "/hangars")
     public ResponseEntity<HangarDto> saveHangar(@Valid @RequestBody HangarDto hangarDto) {

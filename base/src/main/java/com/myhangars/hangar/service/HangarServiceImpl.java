@@ -17,6 +17,15 @@ public class HangarServiceImpl implements HangarService{
     @Autowired
     private HangarDao hangarDao;
 
+    private void checkIfUnique(Hangar hangar) {
+
+        String hangarName = hangar.getName();
+        boolean isNameUnique = this.hangarDao.findByName(hangarName).isEmpty();
+
+        if(!isNameUnique)
+            throw new GenericException.AlreadyExists(hangarName);
+    }
+
     @Override
     public Page< Hangar > getAll(Pageable pageable) {
 
@@ -56,6 +65,18 @@ public class HangarServiceImpl implements HangarService{
         return hangars;
     }
 
+    /*
+    @Override
+    public Hangar getExactlyByName(String name) {
+        Hangar hangar = this.hangarDao
+                .findExactlyByName(name)
+                .orElseThrow(() -> new GenericException.NotFound(name));
+
+        System.out.println("Hola");
+        return hangar;
+    }
+    */
+
     @Override
     public Hangar getFirstByName(String name) {
         return this.getByName(name).get(0);
@@ -64,10 +85,7 @@ public class HangarServiceImpl implements HangarService{
     @Override
     public Hangar insert(Hangar hangar) {
 
-        String hangarName = hangar.getName();
-
-        if(this.hangarDao.findByName(hangarName) == null)
-            throw new GenericException.AlreadyExists(hangarName);
+        this.checkIfUnique(hangar);
 
         return this.hangarDao.save(hangar);
     }
@@ -76,6 +94,8 @@ public class HangarServiceImpl implements HangarService{
     public Hangar update(long id, Hangar hangar) {
 
         Hangar _hangar = this.getById(id);
+
+        this.checkIfUnique(hangar);
 
         _hangar.setName(hangar.getName());
         _hangar.setLocation(hangar.getLocation());
